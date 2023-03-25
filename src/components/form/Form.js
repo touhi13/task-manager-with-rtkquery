@@ -1,6 +1,7 @@
 import { useGetTeamQuery } from '../../features/team/teamApi';
 import { useGetProjectsQuery } from '../../features/projects/projectsApi';
 import { useAddTaskMutation } from '../../features/tasks/tasksApi';
+import { useEditTaskMutation } from '../../features/tasks/tasksApi';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -18,6 +19,7 @@ export default function Form() {
     } = useGetProjectsQuery();
 
     const [addTask, { isLoading }] = useAddTaskMutation();
+    const [editTask, {load: isLoading }] = useEditTaskMutation();
     const navigate = useNavigate();
 
     const [taskName, setTaskName] = useState('');
