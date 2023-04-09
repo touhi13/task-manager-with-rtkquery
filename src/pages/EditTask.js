@@ -1,8 +1,13 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
 import Form from '../components/form/Form'
 import Layout from '../components/layout/Layout'
+import { useGetTaskQuery } from '../features/tasks/tasksApi';
 
 export default function EditTask() {
+
+    const { taskId } = useParams();
+    const { data: task, isLoading, isError, error } = useGetTaskQuery(taskId);
     return (
         <Layout>
             <main className="relative z-20 max-w-3xl mx-auto rounded-lg xl:max-w-none">
@@ -11,7 +16,7 @@ export default function EditTask() {
                 </h1>
 
                 <div className="justify-center mb-10 space-y-2 md:flex md:space-y-0">
-                    <Form />
+                    <Form task={task}/>
                 </div>
             </main>
         </Layout>

@@ -23,7 +23,7 @@ export const tasksApi = apiSlice.injectEndpoints({
               draft.push(newTask);
             })
           );
-        } catch {}
+        } catch { }
       },
     }),
     editTask: builder.mutation({
@@ -38,7 +38,7 @@ export const tasksApi = apiSlice.injectEndpoints({
           const { data: updatedTask } = await queryFulfilled;
           dispatch(
             apiSlice.util.updateQueryData('getTasks', undefined, (draft) => {
-              const index = draft.findIndex((task) => task.id == arg.id);
+              const index = draft.findIndex((task) => task.id === arg.id);
               draft[index] = updatedTask;
             })
           );
@@ -51,7 +51,7 @@ export const tasksApi = apiSlice.injectEndpoints({
               }
             )
           );
-        } catch {}
+        } catch { }
       },
     }),
     deleteTask: builder.mutation({
@@ -63,7 +63,7 @@ export const tasksApi = apiSlice.injectEndpoints({
         // optimistic cache update
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTasks', undefined, (draft) => {
-            const index = draft.findIndex((task) => task.id == arg);
+            const index = draft.findIndex((task) => task.id === arg);
             draft.splice(index, 1);
           })
         );
